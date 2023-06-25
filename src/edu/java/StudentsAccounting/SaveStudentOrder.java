@@ -1,3 +1,7 @@
+package edu.java.StudentsAccounting;
+
+import edu.java.StudentsAccounting.domain.StudentOrder;
+
 public class SaveStudentOrder {
     public static void main(String[] args) {
 
@@ -19,7 +23,7 @@ public class SaveStudentOrder {
 
     static long saveStudentOrder(StudentOrder studentOrder) {
         long answer = 1999;
-        System.out.println("SaveStudentOrder" + studentOrder.hLastName);
+        System.out.println("edu.java.StudentsAccounting.SaveStudentOrder" + studentOrder.hLastName);
 
         return answer;
     }
