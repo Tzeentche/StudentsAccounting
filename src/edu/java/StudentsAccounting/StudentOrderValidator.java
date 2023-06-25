@@ -1,3 +1,8 @@
+package edu.java.StudentsAccounting;
+
+import edu.java.StudentsAccounting.domain.*;
+import edu.java.StudentsAccounting.mail.MailSender;
+import edu.java.StudentsAccounting.validator.*;
 import org.w3c.dom.ls.LSOutput;
 
 public class StudentOrderValidator {
@@ -48,28 +53,27 @@ public class StudentOrderValidator {
         crv1.hostName = "Host1";
         crv1.login = "liogin1";
         crv1.password = "password1";
-        CityRegisterValidator crv2 = new CityRegisterValidator();
-        crv2.hostName = "Host2";
-        crv2.login = "liogin2";
-        crv2.password = "password2";
         AnswerCityRegister ans1 = crv1.checkCityRegister(so);
-        AnswerCityRegister ans2 = crv2.checkCityRegister(so);
         return ans1;
     }
 
     static AnswerWedding checkWedding(StudentOrder so) {
-        return WeddingRegisterValidator.checkWedding(so);
+        WeddingValidator wd = new WeddingValidator();
+        return wd.checkWedding(so);
     }
 
     static AnswerChildren checkChildren(StudentOrder so) {
-        return ChildrenRegisterValidator.checkChildren(so);
+        ChildrenValidator cv = new ChildrenValidator();
+        return cv.checkChildren(so);
     }
 
     static AnswerStudent checkStudent(StudentOrder so) {
-        return StudentRegisterValidator.checkStudent(so);
+
+        return new StudentValidator().checkStudent(so);
     }
 
     static void sendMail(StudentOrder so) {
+        new MailSender().sendMail(so);
 
     }
 }
