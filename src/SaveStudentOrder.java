@@ -7,6 +7,12 @@ public class SaveStudentOrder {
         so.wFirstName = "Parafia";
         so.wLastName = "Trifonova";
 
+        StudentOrder so1 = new StudentOrder();
+        so1.hFirstName = "Trofim";
+        so1.hLastName = "Trifonov";
+        so1.wFirstName = "Parafia";
+        so1.wLastName = "Trifonova";
+
         long ans = saveStudentOrder(so);
         System.out.println(ans);
     }
