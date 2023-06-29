@@ -4,17 +4,23 @@ import java.time.LocalDate;
 
 public class Person {
 
-    private String surname;
-    private String givenName;
+    protected String surName;
+    protected String givenName;
     private String patronymic;
     private LocalDate dateOfBirth;
+    private Address address;
 
-    public String getSurname() {
-        return surname;
+    public String getPersonString() {
+
+        return surName + " " + givenName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public String getSurName() {
+        return surName;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
     }
 
     public String getGivenName() {
@@ -39,5 +45,13 @@ public class Person {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
