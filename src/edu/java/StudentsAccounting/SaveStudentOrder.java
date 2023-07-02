@@ -8,10 +8,6 @@ public class SaveStudentOrder {
     public static void main(String[] args) {
 
         buildStudentOrder();
-
-//        StudentOrder so = new StudentOrder();
-//        long ans = saveStudentOrder(so);
-//        System.out.println(ans);
     }
 
     static long saveStudentOrder(StudentOrder studentOrder) {
