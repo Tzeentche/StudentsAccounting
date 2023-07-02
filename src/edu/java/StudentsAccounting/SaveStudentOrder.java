@@ -4,11 +4,10 @@ import edu.java.StudentsAccounting.domain.Adult;
 import edu.java.StudentsAccounting.domain.StudentOrder;
 
 public class SaveStudentOrder {
-    public static void main(String[] args) {
-        StudentOrder so = new StudentOrder();
 
-        long ans = saveStudentOrder(so);
-        System.out.println(ans);
+    public static void main(String[] args) {
+
+        buildStudentOrder();
     }
 
     static long saveStudentOrder(StudentOrder studentOrder) {
@@ -22,7 +21,12 @@ public class SaveStudentOrder {
         StudentOrder so = new StudentOrder();
         Adult husband = new Adult();
         husband.setGivenName("Trifon");
+        husband.setSurName("Pidorov");
+        husband.setPassportNumber("12345678001");
         so.setHusband(husband);
+
+        String ans = husband.getPersonString();
+        System.out.println(ans);
 
         return so;
     }
