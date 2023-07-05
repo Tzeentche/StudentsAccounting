@@ -7,7 +7,7 @@ public class SaveStudentOrder {
 
     public static void main(String[] args) {
 
-        buildStudentOrder();
+//        buildStudentOrder();
     }
 
     static long saveStudentOrder(StudentOrder studentOrder) {
@@ -17,10 +17,13 @@ public class SaveStudentOrder {
         return answer;
     }
 
-    static StudentOrder buildStudentOrder() {
+    static StudentOrder buildStudentOrder(long id) {
 
         StudentOrder so = new StudentOrder();
+        so.setStudentOrderId(id);
+
         Adult husband = new Adult();
+
         husband.setGivenName("Trifon");
         husband.setSurName("Pidorov");
         husband.setPassportNumber("12345678001");

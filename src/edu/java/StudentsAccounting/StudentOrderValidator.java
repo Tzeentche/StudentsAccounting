@@ -3,7 +3,6 @@ package edu.java.StudentsAccounting;
 import edu.java.StudentsAccounting.domain.*;
 import edu.java.StudentsAccounting.mail.MailSender;
 import edu.java.StudentsAccounting.validator.*;
-import org.w3c.dom.ls.LSOutput;
 
 public class StudentOrderValidator {
 
@@ -28,41 +27,34 @@ public class StudentOrderValidator {
     }
 
     public void checkAll() {
+            StudentOrder[] soArray = readStudentOrders();
 
-        while(true) {
-            StudentOrder so = readStudentOrder();
+        for (int i = 0; i < soArray.length; i++) {
+            checkOneOrder(soArray[i]);
+        }
+    }
 
-//            System.out.println("Start!");
+    public StudentOrder[] readStudentOrders() {
+        StudentOrder[] soArray = new StudentOrder[3];
 
-            if(so == null) {
-                break;
-            }
+        for (int i = 0; i < soArray.length; i++) {
+            soArray[i] = SaveStudentOrder.buildStudentOrder(i);
 
-//            System.out.println("Finish!");
-
-                AnswerCityRegister cityAnswer = checkCityRegister(so);
-                if(!cityAnswer.success) {
-                    //
-//                    continue;
-
-                    break;
-                }
-
-                AnswerWedding wedAnswer = checkWedding(so);
-                AnswerChildren childAnswer = checkChildren(so);
-                AnswerStudent studentAnswer = checkStudent(so);
-
-                sendMail(so);
         }
 
-//        System.out.println("Finish 2");
+        return soArray;
     }
 
-    public StudentOrder readStudentOrder() {
+    public void checkOneOrder(StudentOrder so) {
 
-        StudentOrder so = new StudentOrder();
-        return so;
+        AnswerCityRegister cityAnswer = checkCityRegister(so);
+        AnswerWedding wedAnswer = checkWedding(so);
+        AnswerChildren childAnswer = checkChildren(so);
+        AnswerStudent studentAnswer = checkStudent(so);
+
+        sendMail(so);
     }
+
     public AnswerCityRegister checkCityRegister(StudentOrder so) {
         return cityRegisterVal.checkCityRegister(so);
     }
