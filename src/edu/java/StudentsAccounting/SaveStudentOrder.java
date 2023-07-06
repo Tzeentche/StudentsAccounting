@@ -22,16 +22,9 @@ public class SaveStudentOrder {
         StudentOrder so = new StudentOrder();
         so.setStudentOrderId(id);
 
-        Adult husband = new Adult();
-
-        husband.setGivenName("Trifon");
-        husband.setSurName("Pidorov");
-        husband.setPassportNumber("12345678001");
-        so.setHusband(husband);
-
-        String ans = husband.getPersonString();
-        System.out.println(ans);
+        Adult husband = new Adult("Pidorov", "Vasilii", "Kamenev", null);
 
         return so;
+
     }
 }
