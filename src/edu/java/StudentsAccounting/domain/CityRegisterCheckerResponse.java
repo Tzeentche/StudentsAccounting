@@ -1,6 +1,6 @@
 package edu.java.StudentsAccounting.domain;
 
-public class CityRegisterCheckerResponce {
+public class CityRegisterCheckerResponse {
     
     boolean existing;
     Boolean temporal;
