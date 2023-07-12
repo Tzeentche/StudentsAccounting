@@ -3,12 +3,21 @@ package edu.java.StudentsAccounting.domain;
 public class Address {
 
     private String postCode;
-
     private String street;
-
     private String building;
     private String extension;
     private String apartment;
+
+    public Address(String postCode, String street, String building, String extension, String apartment) {
+        this.postCode = postCode;
+        this.street = street;
+        this.building = building;
+        this.extension = extension;
+        this.apartment = apartment;
+    }
+
+    public Address() {
+    }
 
     public String getPostCode() {
         return postCode;
