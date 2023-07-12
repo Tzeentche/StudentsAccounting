@@ -5,6 +5,7 @@ import edu.java.StudentsAccounting.domain.CityRegisterCheckerResponse;
 import edu.java.StudentsAccounting.domain.Person;
 import edu.java.StudentsAccounting.domain.StudentOrder;
 import edu.java.StudentsAccounting.exception.CityRegisterException;
+import org.w3c.dom.ls.LSOutput;
 
 public class CityRegisterValidator {
 
@@ -25,9 +26,9 @@ public class CityRegisterValidator {
         try {
             CityRegisterCheckerResponse hans = personChecker.checkPerson(so.getHusband());
             CityRegisterCheckerResponse wans = personChecker.checkPerson(so.getHusband());
-            CityRegisterCheckerResponse cans = personChecker.checkPerson(so.getHusband());
+            CityRegisterCheckerResponse cans = personChecker.checkPerson(so.getChild());
         } catch (CityRegisterException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         }
 
         AnswerCityRegister ans = new AnswerCityRegister();

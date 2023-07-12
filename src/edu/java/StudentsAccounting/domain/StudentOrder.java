@@ -1,11 +1,61 @@
 package edu.java.StudentsAccounting.domain;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 public class StudentOrder {
 
     private long studentOrderId;
+//    private StudentOrderStatus studentOrderStatus;
+    private LocalDateTime studentOrderDate;
     private Adult husband;
     private Adult wife;
     private Child child;
+    private List<Child> children;
+    private String marriageCertificateId;
+    private RegisterOffice marriageOffice;
+    private LocalDate marriageDate;
+
+    public RegisterOffice getMarriageOffice() {
+        return marriageOffice;
+    }
+
+    public void setMarriageOffice(RegisterOffice marriageOffice) {
+        this.marriageOffice = marriageOffice;
+    }
+
+    public LocalDateTime getStudentOrderDate() {
+        return studentOrderDate;
+    }
+
+    public void setStudentOrderDate(LocalDateTime studentOrderDate) {
+        this.studentOrderDate = studentOrderDate;
+    }
+
+    public List<Child> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Child> children) {
+        this.children = children;
+    }
+
+    public String getMarriageCertificateId() {
+        return marriageCertificateId;
+    }
+
+    public void setMarriageCertificateId(String marriageCertificateId) {
+        this.marriageCertificateId = marriageCertificateId;
+    }
+
+    public LocalDate getMarriageDate() {
+        return marriageDate;
+    }
+
+    public void setMarriageDate(LocalDate marriageDate) {
+        this.marriageDate = marriageDate;
+    }
 
     public long getStudentOrderId() {
         return studentOrderId;
