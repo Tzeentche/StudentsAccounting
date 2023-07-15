@@ -2,6 +2,7 @@ package edu.java.StudentsAccounting.validator;
 
 import edu.java.StudentsAccounting.domain.*;
 import edu.java.StudentsAccounting.domain.register.AnswerCityRegister;
+import edu.java.StudentsAccounting.domain.register.AnswerCityRegisterItem;
 import edu.java.StudentsAccounting.domain.register.CityRegisterResponse;
 import edu.java.StudentsAccounting.exception.CityRegisterException;
 
@@ -23,33 +24,24 @@ public class CityRegisterValidator {
     }
 
     public AnswerCityRegister checkCityRegister(StudentOrder so) {
+        AnswerCityRegister ans = new AnswerCityRegister();
 
+        ans.addItem(checkPerson(so.getHusband()));
+        ans.addItem(checkPerson(so.getWife()));
+        for(Child child : so.getChildren()) {
+            ans.addItem(checkPerson(child));
+        }
+        return ans;
+    }
+
+    private AnswerCityRegisterItem checkPerson(Person person) {
         try {
-            CityRegisterResponse hans = personChecker.checkPerson(so.getHusband());
-            CityRegisterResponse wans = personChecker.checkPerson(so.getWife());
-
-            List<Child> children = so.getChildren();
-
-            for (int i = 0; i < so.getChildren().size(); i++) {
-                CityRegisterResponse cans = personChecker.checkPerson(so.getChildren().get(i));
-            }
-
-            for(Iterator<Child> it = children.iterator(); it.hasNext(); ) {
-
-                Child child = it.next();
-                CityRegisterResponse cans = personChecker.checkPerson(child);
-            }
-
-            for(Child child : children) {
-                CityRegisterResponse cans = personChecker.checkPerson(child);
-            }
+            CityRegisterResponse cans = personChecker.checkPerson(person);
 
         } catch (CityRegisterException e) {
             e.printStackTrace(System.out);
         }
 
-        AnswerCityRegister ans = new AnswerCityRegister();
-        ans.success = false;
-        return ans;
+        return null;
     }
 }
