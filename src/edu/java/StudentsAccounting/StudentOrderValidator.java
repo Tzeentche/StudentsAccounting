@@ -1,8 +1,12 @@
 package edu.java.StudentsAccounting;
 
 import edu.java.StudentsAccounting.domain.*;
+import edu.java.StudentsAccounting.domain.register.AnswerCityRegister;
 import edu.java.StudentsAccounting.mail.MailSender;
 import edu.java.StudentsAccounting.validator.*;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class StudentOrderValidator {
 
@@ -27,22 +31,22 @@ public class StudentOrderValidator {
     }
 
     public void checkAll() {
-            StudentOrder[] soArray = readStudentOrders();
+        List<StudentOrder> soList = readStudentOrders();
 
-        for (StudentOrder so : soArray) {
+        for (StudentOrder so : soList) {
             checkOneOrder(so);
         }
     }
 
-    public StudentOrder[] readStudentOrders() {
-        StudentOrder[] soArray = new StudentOrder[3];
+    public List<StudentOrder> readStudentOrders() {
+        List<StudentOrder> soList = new LinkedList<>();
 
-        for (int i = 0; i < soArray.length; i++) {
-            soArray[i] = SaveStudentOrder.buildStudentOrder(i);
-
+        for (int i = 0; i < soList.size(); i++) {
+            StudentOrder so = SaveStudentOrder.buildStudentOrder(i);
+            soList.add(so);
         }
 
-        return soArray;
+        return soList;
     }
 
     public void checkOneOrder(StudentOrder so) {
