@@ -5,21 +5,18 @@ import edu.java.StudentsAccounting.domain.register.AnswerCityRegister;
 import edu.java.StudentsAccounting.domain.register.AnswerCityRegisterItem;
 import edu.java.StudentsAccounting.domain.register.CityRegisterResponse;
 import edu.java.StudentsAccounting.exception.CityRegisterException;
+import edu.java.StudentsAccounting.exception.TransportException;
 
 import java.util.Iterator;
 import java.util.List;
 
 public class CityRegisterValidator {
 
-    public String hostName;
-    protected int port;
-    public String login;
-    public String password;
+    public static final String IN_CODE = "NO_GRN";
 
     private FakeCityRegisterChecker personChecker;
 
     public CityRegisterValidator() {
-
         personChecker = new FakeCityRegisterChecker();
     }
 
@@ -35,13 +32,26 @@ public class CityRegisterValidator {
     }
 
     private AnswerCityRegisterItem checkPerson(Person person) {
+
+        AnswerCityRegisterItem.CityStatus status = null;
+        AnswerCityRegisterItem.CityError error = null;
+
         try {
-            CityRegisterResponse cans = personChecker.checkPerson(person);
+            CityRegisterResponse tmp = personChecker.checkPerson(person);
+            status = tmp.isExisting() ? AnswerCityRegisterItem.CityStatus.YES : AnswerCityRegisterItem.CityStatus.NO;
 
         } catch (CityRegisterException e) {
             e.printStackTrace(System.out);
+            status = AnswerCityRegisterItem.CityStatus.ERROR;
+            error = new AnswerCityRegisterItem.CityError(e.getCode(), e.getMessage());
+
+        } catch (TransportException e) {
+            e.printStackTrace(System.out);
+            status = AnswerCityRegisterItem.CityStatus.ERROR;
+            error = new AnswerCityRegisterItem.CityError(IN_CODE, e.getMessage());
         }
 
-        return null;
+        AnswerCityRegisterItem ans = new AnswerCityRegisterItem(status, person, error);
+        return ans;
     }
 }
