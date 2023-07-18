@@ -9,6 +9,8 @@ public class RealCityRegisterChecker implements CityRegisterChecker {
 
     public CityRegisterResponse checkPerson(Person person) throws CityRegisterException, TransportException {
 
+        String answer = "Get another Checker";
+        
         return null;
     }
 }
