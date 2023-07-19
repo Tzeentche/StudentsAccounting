@@ -43,7 +43,10 @@ public class CityRegisterValidator {
         } catch (CityRegisterException e) {
             e.printStackTrace(System.out);
             status = AnswerCityRegisterItem.CityStatus.ERROR;
-            error = new AnswerCityRegisterItem.CityError(e.getCode(), e.getMessage());
+            if(e instanceof CityRegisterException) {
+                CityRegisterException ex = (CityRegisterException) e;
+                error = new AnswerCityRegisterItem.CityError(e.getCode(), e.getMessage());
+            }
 
         } catch (TransportException e) {
             e.printStackTrace(System.out);
