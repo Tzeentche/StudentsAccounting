@@ -11,7 +11,7 @@ public class SaveStudentOrder {
 
     public static void main(String[] args) {
 
-        buildStudentOrder();
+//        buildStudentOrder();
     }
 
     static long saveStudentOrder(StudentOrder studentOrder) {
@@ -26,7 +26,7 @@ public class SaveStudentOrder {
         so.setStudentOrderId(id);
         so.setMarriageCertificateId("" + (12345000 + id));
         so.setMarriageDate(LocalDate.of(2023, 7 , 4));
-        so.setMarriageOffice("Otdel ZAGS");
+//        so.setMarriageOffice("Otdel ZAGS");
 
         Address address = new Address("195000", "ave. Warszawske", "12", "", "142");
 
