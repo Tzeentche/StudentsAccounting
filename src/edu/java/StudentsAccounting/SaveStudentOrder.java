@@ -5,11 +5,26 @@ import edu.java.StudentsAccounting.domain.Adult;
 import edu.java.StudentsAccounting.domain.Child;
 import edu.java.StudentsAccounting.domain.StudentOrder;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 public class SaveStudentOrder {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+
+        Class.forName("org.postgresql.Driver");
+        Connection connect = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/jc_student",
+                "postgres", "root");
+
+        Statement stmt = connect.createStatement();
+        ResultSet res = stmt.executeQuery("SELECT * FROM jc_street");
+        while (res.next()) {
+            System.out.println(res.getLong(1) + " : " + res.getString(2));
+        }
 
 //        buildStudentOrder();
     }
