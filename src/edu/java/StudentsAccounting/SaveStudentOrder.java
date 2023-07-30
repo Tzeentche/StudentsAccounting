@@ -1,9 +1,6 @@
 package edu.java.StudentsAccounting;
 
-import edu.java.StudentsAccounting.domain.Address;
-import edu.java.StudentsAccounting.domain.Adult;
-import edu.java.StudentsAccounting.domain.Child;
-import edu.java.StudentsAccounting.domain.StudentOrder;
+import edu.java.StudentsAccounting.domain.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,17 +11,6 @@ import java.time.LocalDate;
 public class SaveStudentOrder {
 
     public static void main(String[] args) throws Exception {
-
-        Class.forName("org.postgresql.Driver");
-        Connection connect = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/jc_student",
-                "postgres", "root");
-
-        Statement stmt = connect.createStatement();
-        ResultSet res = stmt.executeQuery("SELECT * FROM jc_street");
-        while (res.next()) {
-            System.out.println(res.getLong(1) + " : " + res.getString(2));
-        }
 
 //        buildStudentOrder();
     }
@@ -43,7 +29,9 @@ public class SaveStudentOrder {
         so.setMarriageDate(LocalDate.of(2023, 7 , 4));
 //        so.setMarriageOffice("Otdel ZAGS");
 
-        Address address = new Address("195000", "ave. Warszawske", "12", "", "142");
+        Street street = new Street(1L, "First Street");
+
+        Address address = new Address("195000", street, "12", "", "142");
 
         Adult husband = new Adult("Pidor", "Vasilii", "Kamenev",
                 LocalDate.of(1977, 8, 24));
