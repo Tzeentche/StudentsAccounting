@@ -7,7 +7,10 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DictionaryDaoImpl {
+public class DictionaryDaoImpl implements DictionaryDao {
+
+    public static final String GET_STREET = "SELECT street_code, street_name " +
+            "FROM jc_street WHERE UPPER(street_name) LIKE UPPER(?)";
 
     private Connection getConnection() throws SQLException {
         Connection connect = DriverManager.getConnection(
@@ -20,16 +23,15 @@ public class DictionaryDaoImpl {
 
         List<Street> result = new LinkedList<>();
 
-        try {
-            Connection connect = getConnection();
-            Statement stmt = connect.createStatement();
-            String sql = "SELECT street_code, street_name " +
-                    "FROM jc_street WHERE UPPER(street_name) LIKE UPPER('%" + pattern + "%')";
-            ResultSet res = stmt.executeQuery(sql);
-            while (res.next()) {
-                Street str = new Street(res.getLong(1), res.getString(2));
-                result.add(str);
-            }
+        try (Connection connect = getConnection();
+             PreparedStatement stmt = connect.prepareStatement(GET_STREET)){
+
+                stmt.setString(1, pattern);
+                ResultSet res = stmt.executeQuery();
+                while (res.next()) {
+                    Street str = new Street(res.getLong(1), res.getString(2));
+                    result.add(str);
+                }
         } catch (SQLException ex) {
             throw new DaoException(ex);
         }
