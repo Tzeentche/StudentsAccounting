@@ -1,5 +1,6 @@
 package edu.java.StudentsAccounting.dao;
 
+import edu.java.StudentsAccounting.config.Config;
 import edu.java.StudentsAccounting.domain.Street;
 import edu.java.StudentsAccounting.exception.DaoException;
 
@@ -14,8 +15,9 @@ public class DictionaryDaoImpl implements DictionaryDao {
 
     private Connection getConnection() throws SQLException {
         Connection connect = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/jc_student",
-                "postgres", "root");
+                Config.getProperty(Config.DB_URL),
+                Config.getProperty(Config.DB_LOGIN),
+                Config.getProperty(Config.DB_PASSWORD));
         return connect;
     }
 
