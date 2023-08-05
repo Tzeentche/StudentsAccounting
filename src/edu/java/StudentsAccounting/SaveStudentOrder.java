@@ -38,7 +38,7 @@ public class SaveStudentOrder {
         husband.setPassportSeria("" + (1000 + id));
         husband.setPassportNumber("" + (10000 + id));
         husband.setIssueDate(LocalDate.of(2017, 9, 15));
-        husband.setIssueDepartment("Police otdel #" + id);
+        husband.setIssueDepartment(new PassportOffice());
         husband.setStudentId("" + 10000 + id);
         husband.setAddress(address);
 
@@ -47,7 +47,7 @@ public class SaveStudentOrder {
         wife.setPassportSeria("" + (2000 + id));
         wife.setPassportNumber("" + (200000 + id));
         wife.setIssueDate(LocalDate.of(2018, 4, 5));
-        wife.setIssueDepartment("Otdel Police #" + id);
+        wife.setIssueDepartment(new PassportOffice());
         wife.setStudentId("" + (200000 + id));
         wife.setAddress(address);
 
