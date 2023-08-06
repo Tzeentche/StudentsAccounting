@@ -16,10 +16,10 @@ public class DictionaryDaoImpl implements DictionaryDao {
             "FROM jc_street WHERE UPPER(street_name) LIKE UPPER(?)";
 
     public static final String GET_PASSPORT = "SELECT * " +
-            "FROM jc_passport_office WHERE p_area_id = ?";
+            "FROM jc_passport_office WHERE p_office_area_id = ?";
 
     public static final String GET_REGISTER = "SELECT * " +
-            "FROM jc_register_office WHERE p_area_id = ?";
+            "FROM jc_register_office WHERE r_office_area_id = ?";
 
     private Connection getConnection() throws SQLException {
         Connection connect = DriverManager.getConnection(
@@ -85,9 +85,9 @@ public class DictionaryDaoImpl implements DictionaryDao {
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
                 RegisterOffice str = new RegisterOffice(
-                        res.getLong("p_office_id"),
-                        res.getString("p_office_area_id"),
-                        res.getString("p_office_name"));
+                        res.getLong("r_office_id"),
+                        res.getString("r_office_area_id"),
+                        res.getString("r_office_name"));
                 result.add(str);
             }
         } catch (SQLException ex) {

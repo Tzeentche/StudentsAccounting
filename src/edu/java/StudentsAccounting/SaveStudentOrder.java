@@ -19,7 +19,15 @@ public class SaveStudentOrder {
             System.out.println(s.getStreetName());
         }
 
-        new DictionaryDaoImpl();
+        List<PassportOffice> po = new DictionaryDaoImpl().findPassportOffices("010020000000");
+        for(PassportOffice p : po) {
+            System.out.println(p.getOfficeName());
+        }
+
+        List<RegisterOffice> ro = new DictionaryDaoImpl().findRegisterOffices("010010000000");
+        for(RegisterOffice r : ro) {
+            System.out.println(r.getOfficeName());
+        }
     }
 
     static long saveStudentOrder(StudentOrder studentOrder) {
