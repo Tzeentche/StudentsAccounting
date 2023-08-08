@@ -1,6 +1,7 @@
 package edu.java.StudentsAccounting.dao;
 
 import edu.java.StudentsAccounting.config.Config;
+import edu.java.StudentsAccounting.domain.CountryArea;
 import edu.java.StudentsAccounting.domain.PassportOffice;
 import edu.java.StudentsAccounting.domain.RegisterOffice;
 import edu.java.StudentsAccounting.domain.Street;
@@ -20,6 +21,9 @@ public class DictionaryDaoImpl implements DictionaryDao {
 
     public static final String GET_REGISTER = "SELECT * " +
             "FROM jc_register_office WHERE r_office_area_id = ?";
+
+    public static final String GET_AREA = "SELECT * " +
+            "FROM jc_country_struct WHERE area_id like ? and area_id <> ?";
 
     private Connection getConnection() throws SQLException {
         Connection connect = DriverManager.getConnection(
@@ -95,5 +99,40 @@ public class DictionaryDaoImpl implements DictionaryDao {
         }
 
         return result;
+    }
+
+    @Override
+    public List<CountryArea> findAreas(String areaId) throws DaoException {
+        List<CountryArea> result = new LinkedList<>();
+
+        try (Connection connect = getConnection();
+             PreparedStatement stmt = connect.prepareStatement(GET_AREA)){
+
+            String param1 = buildParam(areaId);
+            String param2 = "";
+
+            stmt.setString(1, param1);
+            stmt.setString(1, param2);
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                CountryArea cntrArea = new CountryArea(
+                        res.getString("r_area_id"),
+                        res.getString("r_area_name"));
+                result.add(cntrArea);
+            }
+        } catch (SQLException ex) {
+            throw new DaoException(ex);
+        }
+
+        return result;
+    }
+
+    private String buildParam(String areaId) {
+
+        if(areaId == null || areaId.trim().isEmpty()) {
+            return "__0000000000";
+        } if(areaId.endsWith("0000000000")) {
+            return areaId.substring(0, 2) + "___0000000";
+        } else if(areaId)
     }
 }
