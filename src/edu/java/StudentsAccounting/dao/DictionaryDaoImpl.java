@@ -127,12 +127,17 @@ public class DictionaryDaoImpl implements DictionaryDao {
         return result;
     }
 
-    private String buildParam(String areaId) {
+    private String buildParam(String areaId) throws SQLException {
 
         if(areaId == null || areaId.trim().isEmpty()) {
             return "__0000000000";
         } if(areaId.endsWith("0000000000")) {
             return areaId.substring(0, 2) + "___0000000";
-        } else if(areaId)
+        } else if(areaId.endsWith("0000000")) {
+            return areaId.substring(0, 5) + "___0000";
+        } else if(areaId.endsWith("0000")) {
+            return areaId.substring(0, 8) + "____";
+        }
+        throw new SQLException("Invalid parameter 'areaId':" + areaId);
     }
 }
