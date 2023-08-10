@@ -8,6 +8,7 @@ import java.util.List;
 public class StudentOrder {
 
     private long studentOrderId;
+    private StudentOrderStatus studentOrderStatus;
     private LocalDateTime studentOrderDate;
     private Adult husband;
     private Adult wife;
@@ -15,6 +16,18 @@ public class StudentOrder {
     private String marriageCertificateId;
     private RegisterOffice marriageOffice;
     private LocalDate marriageDate;
+
+    public StudentOrderStatus getStudentOrderStatus() {
+        return studentOrderStatus;
+    }
+
+    public void setStudentOrderStatus(StudentOrderStatus studentOrderStatus) {
+        this.studentOrderStatus = studentOrderStatus;
+    }
+
+    public void setChildren(List<Child> children) {
+        this.children = children;
+    }
 
     public RegisterOffice getMarriageOffice() {
         return marriageOffice;
