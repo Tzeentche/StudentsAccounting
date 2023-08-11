@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class Config {
 
-    public static final String DB_URL = "db_url";
-    public static final String DB_LOGIN = "db.login";
-    public static final String DB_PASSWORD = "db.password";
+    public static final String DB_URL = "jdbc:postgresql://localhost/jc_student";
+    public static final String DB_LOGIN = "postgres";
+    public static final String DB_PASSWORD = "postgres";
 
     public static Properties properties = new Properties();
 
