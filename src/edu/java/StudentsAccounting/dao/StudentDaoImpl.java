@@ -102,7 +102,6 @@ public class StudentDaoImpl implements StudentOrderDao {
                 stmt.setString(29, so.getMarriageCertificateId());
                 stmt.setLong(30, so.getMarriageOffice().getOfficeId());
                 stmt.setDate(31, java.sql.Date.valueOf(so.getMarriageDate()));
-
                 stmt.executeUpdate();
 
                 ResultSet gkRs = stmt.getGeneratedKeys();
@@ -131,8 +130,10 @@ public class StudentDaoImpl implements StudentOrderDao {
             for (Child child : so.getChildren()) {
                 stmt.setLong(1, soId);
                 setParamsForChild(stmt, child);
-                stmt.executeUpdate();
+                stmt.addBatch();
             }
+
+            stmt.executeBatch();
         }
     }
 
