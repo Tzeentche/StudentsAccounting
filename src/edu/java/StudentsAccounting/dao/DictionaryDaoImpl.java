@@ -26,6 +26,7 @@ public class DictionaryDaoImpl implements DictionaryDao {
             "FROM jc_country_struct WHERE  area_id like ? and area_id <> ?";
 
     private Connection getConnection() throws SQLException {
+
         Connection connect = DriverManager.getConnection (
                 Config.getProperty(Config.DB_URL),
                 Config.getProperty(Config.DB_LOGIN),
@@ -51,7 +52,6 @@ public class DictionaryDaoImpl implements DictionaryDao {
         } catch (SQLException ex) {
             throw new DaoException(ex);
         }
-
         return result;
     }
 
@@ -75,7 +75,6 @@ public class DictionaryDaoImpl implements DictionaryDao {
         } catch (SQLException ex) {
             throw new DaoException(ex);
         }
-
         return result;
     }
 
@@ -99,7 +98,6 @@ public class DictionaryDaoImpl implements DictionaryDao {
         } catch (SQLException ex) {
             throw new DaoException(ex);
         }
-
         return result;
     }
 
