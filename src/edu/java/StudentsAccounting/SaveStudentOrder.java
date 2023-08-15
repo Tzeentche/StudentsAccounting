@@ -1,14 +1,10 @@
 package edu.java.StudentsAccounting;
 
 import edu.java.StudentsAccounting.dao.DictionaryDaoImpl;
-import edu.java.StudentsAccounting.dao.StudentDaoImpl;
+import edu.java.StudentsAccounting.dao.StudentOrderDaoImpl;
 import edu.java.StudentsAccounting.dao.StudentOrderDao;
 import edu.java.StudentsAccounting.domain.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -54,7 +50,7 @@ public class SaveStudentOrder {
         }
 
         StudentOrder s = buildStudentOrder(10);
-        StudentOrderDao dao = new StudentDaoImpl();
+        StudentOrderDao dao = new StudentOrderDaoImpl();
         Long id = dao.saveStudentOrder(s);
         System.out.println(id);
     }
@@ -78,6 +74,7 @@ public class SaveStudentOrder {
 
         Address address = new Address("195000", street, "12", "", "142");
 
+//        Husband
         Adult husband = new Adult("Pidor", "Vasilii", "Kamenev",
                 LocalDate.of(1977, 8, 24));
         husband.setPassportSeria("" + (1000 + id));
@@ -87,7 +84,10 @@ public class SaveStudentOrder {
         husband.setIssueDepartment(po1);
         husband.setStudentId("" + 10000 + id);
         husband.setAddress(address);
+        husband.setUniversity(new University(2L, ""));
+        husband.setStudentId("HH12345");
 
+//        Wife
         Adult wife = new Adult("Shmara", "Irina", "Kameneva",
                 LocalDate.of(1978, 3, 12));
         wife.setPassportSeria("" + (2000 + id));
@@ -97,7 +97,10 @@ public class SaveStudentOrder {
         wife.setIssueDepartment(po2);
         wife.setStudentId("" + (200000 + id));
         wife.setAddress(address);
+        wife.setUniversity(new University(2L, ""));
+        wife.setStudentId("WW12345");
 
+//          Child
         Child child1 = new Child("Tvar'", "Veron", "Kameneva",
                 LocalDate.of(2018, 6, 29));
         child1.setCertificateNumber("" + (300000 + id));
@@ -106,6 +109,7 @@ public class SaveStudentOrder {
         child1.setIssueDepartment(ro1);
         child1.setAddress(address);
 
+//        Child
         Child child2 = new Child("Tvar'", "Vaskina", "Kameneva",
                 LocalDate.of(2018, 6, 29));
         child2.setCertificateNumber("" + (400000 + id));
@@ -114,6 +118,7 @@ public class SaveStudentOrder {
         child2.setIssueDepartment(ro2);
         child2.setAddress(address);
 
+//        Child
         so.setHusband(husband);
         so.setWife(wife);
         so.addChild(child1);
