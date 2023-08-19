@@ -6,8 +6,8 @@ public class PassportOffice {
     private String officeAreaId;
     private String officeName;
 
-    public PassportOffice() {
-    }
+//    public PassportOffice() {
+//    }
 
     public PassportOffice(long officeId, String officeAreaId, String officeName) {
         this.officeId = officeId;
@@ -19,17 +19,17 @@ public class PassportOffice {
         return officeId;
     }
 
-    public void setOfficeId(long officeId) {
-        this.officeId = officeId;
-    }
-
-    public String getOfficeAreaId() {
-        return officeAreaId;
-    }
-
-    public void setOfficeAreaId(String officeAreaId) {
-        this.officeAreaId = officeAreaId;
-    }
+//    public void setOfficeId(long officeId) {
+//        this.officeId = officeId;
+//    }
+//
+//    public String getOfficeAreaId() {
+//        return officeAreaId;
+//    }
+//
+//    public void setOfficeAreaId(String officeAreaId) {
+//        this.officeAreaId = officeAreaId;
+//    }
 
     public String getOfficeName() {
         return officeName;

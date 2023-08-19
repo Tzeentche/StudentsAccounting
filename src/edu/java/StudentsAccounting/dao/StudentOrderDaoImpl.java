@@ -183,7 +183,6 @@ public class StudentOrderDaoImpl implements StudentOrderDao
     @Override
     public List<StudentOrder> getStudentOrders() throws DaoException {
         return getStudentOrdersOneSelect();
-//        return getStudentOrdersTwoSelect();
     }
 
     private List<StudentOrder> getStudentOrdersOneSelect() throws DaoException {
@@ -224,29 +223,29 @@ public class StudentOrderDaoImpl implements StudentOrderDao
         return result;
     }
 
-    private List<StudentOrder> getStudentOrdersTwoSelect() throws DaoException {
-        List<StudentOrder> result = new LinkedList<>();
-
-        try (Connection con = getConnection();
-             PreparedStatement stmt = con.prepareStatement(SELECT_ORDERS)) {
-
-            stmt.setInt(1, StudentOrderStatus.START.ordinal());
-            stmt.setInt(2, Integer.parseInt(Config.getProperty(Config.DB_LIMIT)));
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                StudentOrder so = getFullStudentOrder(rs);
-
-                result.add(so);
-            }
-            findChildren(con, result);
-
-            rs.close();
-        } catch(SQLException ex) {
-            throw new DaoException(ex);
-        }
-
-        return result;
-    }
+//    private List<StudentOrder> getStudentOrdersTwoSelect() throws DaoException {
+//        List<StudentOrder> result = new LinkedList<>();
+//
+//        try (Connection con = getConnection();
+//             PreparedStatement stmt = con.prepareStatement(SELECT_ORDERS)) {
+//
+//            stmt.setInt(1, StudentOrderStatus.START.ordinal());
+//            stmt.setInt(2, Integer.parseInt(Config.getProperty(Config.DB_LIMIT)));
+//            ResultSet rs = stmt.executeQuery();
+//            while(rs.next()) {
+//                StudentOrder so = getFullStudentOrder(rs);
+//
+//                result.add(so);
+//            }
+//            findChildren(con, result);
+//
+//            rs.close();
+//        } catch(SQLException ex) {
+//            throw new DaoException(ex);
+//        }
+//
+//        return result;
+//    }
 
     private StudentOrder getFullStudentOrder(ResultSet rs) throws SQLException {
         StudentOrder so = new StudentOrder();
@@ -307,22 +306,22 @@ public class StudentOrderDaoImpl implements StudentOrderDao
         return adult;
     }
 
-    private void findChildren(Connection con, List<StudentOrder> result) throws SQLException {
-        String cl = "(" + result.stream().map(so -> String.valueOf(so.getStudentOrderId()))
-                .collect(Collectors.joining(",")) + ")";
-
-        Map<Long, StudentOrder> maps = result.stream().collect(Collectors
-                .toMap(so -> so.getStudentOrderId(), so -> so));
-
-        try (PreparedStatement stmt = con.prepareStatement(SELECT_CHILD + cl)) {
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                Child ch = fillChild(rs);
-                StudentOrder so = maps.get(rs.getLong("student_order_id"));
-                so.addChild(ch);
-            }
-        }
-    }
+//    private void findChildren(Connection con, List<StudentOrder> result) throws SQLException {
+//        String cl = "(" + result.stream().map(so -> String.valueOf(so.getStudentOrderId()))
+//                .collect(Collectors.joining(",")) + ")";
+//
+//        Map<Long, StudentOrder> maps = result.stream().collect(Collectors
+//                .toMap(so -> so.getStudentOrderId(), so -> so));
+//
+//        try (PreparedStatement stmt = con.prepareStatement(SELECT_CHILD + cl)) {
+//            ResultSet rs = stmt.executeQuery();
+//            while(rs.next()) {
+//                Child ch = fillChild(rs);
+//                StudentOrder so = maps.get(rs.getLong("student_order_id"));
+//                so.addChild(ch);
+//            }
+//        }
+//    }
 
     private Child fillChild(ResultSet rs) throws SQLException {
         String surName = rs.getString("c_sur_name");
