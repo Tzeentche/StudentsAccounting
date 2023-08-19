@@ -28,20 +28,20 @@ public class AnswerCityRegisterItem {
         this.error = error;
     }
 
-    public AnswerCityRegisterItem(CityStatus status, Person person) {
-        this.status = status;
-        this.person = person;
-    }
-
-    public CityStatus getStatus() {
-        return status;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public CityError getError() {
-        return error;
-    }
+//    public AnswerCityRegisterItem(CityStatus status, Person person) {
+//        this.status = status;
+//        this.person = person;
+//    }
+//
+//    public CityStatus getStatus() {
+//        return status;
+//    }
+//
+//    public Person getPerson() {
+//        return person;
+//    }
+//
+//    public CityError getError() {
+//        return error;
+//    }
 }

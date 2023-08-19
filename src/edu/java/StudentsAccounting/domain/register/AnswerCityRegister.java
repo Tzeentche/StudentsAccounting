@@ -14,7 +14,7 @@ public class    AnswerCityRegister {
         items.add(item);
     }
 
-    public List<AnswerCityRegisterItem> getItem() {
-        return items;
-    }
+//    public List<AnswerCityRegisterItem> getItem() {
+//        return items;
+//    }
 }

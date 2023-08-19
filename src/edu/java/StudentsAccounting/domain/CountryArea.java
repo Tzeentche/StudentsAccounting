@@ -1,5 +1,10 @@
 package edu.java.StudentsAccounting.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CountryArea {
 
     private String areaId;
@@ -17,15 +22,15 @@ public class CountryArea {
         return areaId;
     }
 
-    public void setAreaId(String areaId) {
-        this.areaId = areaId;
-    }
+//    public void setAreaId(String areaId) {
+//        this.areaId = areaId;
+//    }
 
     public String getAreaName() {
         return areaName;
     }
 
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
+//    public void setAreaName(String areaName) {
+//        this.areaName = areaName;
+//    }
 }
